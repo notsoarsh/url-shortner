@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Analytics - URL Shortener</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📊 URL Analytics</h1>
+            <a href="/" class="btn btn-secondary">← Back to Home</a>
+        </header>
+
+        <main class="main-content">
+            <div id="loadingCard" class="card">
+                <div class="loading-container">
+                    <div class="loading-spinner">⏳</div>
+                    <p>Loading analytics data...</p>
+                </div>
+            </div>
+
+            <div id="analyticsContent" style="display: none;">
+                <!-- URL Info Card -->
+                <div class="card">
+                    <h2>URL Information</h2>
+                    <div class="url-info">
+                        <div class="info-item">
+                            <label>Short URL:</label>
+                            <div class="url-copy-container">
+                                <input type="text" id="shortUrl" readonly>
+                                <button type="button" class="btn btn-copy" onclick="copyToClipboard('shortUrl')">📋 Copy</button>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <label>Original URL:</label>
+                            <div class="original-url" id="originalUrl"></div>
+                        </div>
+                        <div class="info-item">
+                            <label>Created:</label>
+                            <span id="createdAt"></span>
+                        </div>
+                        <div class="info-item">
+                            <label>Expires:</label>
+                            <span id="expiresAt"></span>
+                        </div>
+                        <div class="info-item">
+                            <label>Status:</label>
+                            <span id="status" class="status-badge"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Click Statistics -->
+                <div class="card">
+                    <h2>Click Statistics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalClicks">0</div>
+                            <div class="stat-label">Total Clicks</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="todayClicks">0</div>
+                            <div class="stat-label">Today's Clicks</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="avgDaily">0</div>
+                            <div class="stat-label">Avg. Daily Clicks</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="daysActive">0</div>
+                            <div class="stat-label">Days Active</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Clicks Chart -->
+                <div class="card">
+                    <h2>Daily Clicks Chart</h2>
+                    <div class="chart-container">
+                        <canvas id="clicksChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="recentActivity">
+                        <p class="no-data">No recent activity</p>
+                    </div>
+                </div>
+
+                <!-- Top Referrers -->
+                <div class="card">
+                    <h2>Top Referrers</h2>
+                    <div class="referrers-list" id="topReferrers">
+                        <p class="no-data">No referrer data available</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="errorCard" class="card error-card" style="display: none;">
+                <h2>❌ Error</h2>
+                <p id="errorMessage">Failed to load analytics data</p>
+                <button type="button" class="btn btn-primary" onclick="location.reload()">🔄 Retry</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 URL Shortener. Analytics Dashboard.</p>
+        </footer>
+    </div>
+
+    <script src="/js/analytics.js"></script>
+</body>
+</html>
